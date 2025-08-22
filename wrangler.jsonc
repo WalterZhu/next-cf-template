@@ -23,6 +23,12 @@
 			"pattern": "test.wildcloud.app",
 			"custom_domain": true
 		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "DEV_KV",
+			"id": "93600aaf5e0146c88ad937c794b4e1e6"
+		}
 	]
 	/**
 	 * Smart Placement
