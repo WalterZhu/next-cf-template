@@ -53,3 +53,4 @@ export interface GeoInfo {
 export interface ApiError {
   error: string;
 }
+
