@@ -19,6 +19,24 @@ export const metadata: Metadata = {
   description: "基于 Next.js 15 和 Cloudflare Workers 的现代 Web 应用模板",
 };
 
+// Cloudflare Web Analytics 组件 - 在服务端获取 token
+async function CloudflareAnalytics() {
+  // 在 Cloudflare Workers 中，从环境变量读取
+  const token = process.env.CF_ANALYTICS_TOKEN;
+  
+  if (!token) {
+    return null;
+  }
+
+  return (
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={`{"token": "${token}"}`}
+    />
+  );
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,6 +44,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
+      <head>
+        <CloudflareAnalytics />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
