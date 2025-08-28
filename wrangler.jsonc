@@ -23,6 +23,12 @@
 			"pattern": "test.wildcloud.app",
 			"custom_domain": true
 		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "DEV_KV",
+			"id": "93600aaf5e0146c88ad937c794b4e1e6"
+		}
 	]
 	/**
 	 * Smart Placement
@@ -39,7 +45,6 @@
 	 * Environment Variables
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
 	 */
-	// "vars": { "MY_VARIABLE": "production_value" }
 	/**
 	 * Note: Use secrets to store sensitive data.
 	 * https://developers.cloudflare.com/workers/configuration/secrets/
