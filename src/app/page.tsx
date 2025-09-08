@@ -1,5 +1,3 @@
-import ServerGeoInfo from "../components/ServerGeoInfo";
-
 export default function Home() {
   return (
     <div className="flex items-center justify-center p-8">
@@ -36,20 +34,6 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mb-8">
-          <ServerGeoInfo />
-        </div>
-
-        <div className="text-center">
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="/kv-demo"
-              className="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-            >
-              查看 KV 存储
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   );

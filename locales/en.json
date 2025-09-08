@@ -1,0 +1,26 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact Us",
+    "language": "Language",
+    "login": "Login",
+    "logout": "Logout",
+    "profile": "Profile"
+  },
+  "nav": {
+    "home": "Home",
+    "demo": "Demo",
+    "ai_test": "AI Test"
+  },
+  "footer": {
+    "powered_by": "Powered by",
+    "and": "and",
+    "built": "Built"
+  },
+  "auth": {
+    "sign_in": "Sign In",
+    "sign_out": "Sign Out",
+    "welcome": "Welcome back"
+  }
+}
