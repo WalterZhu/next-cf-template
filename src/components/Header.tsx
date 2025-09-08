@@ -1,6 +1,23 @@
 import Link from 'next/link';
+import { getCurrentUserIdFromHeaders } from '@/lib/user-utils';
+import { getUserSettings } from '@/lib/session';
+import { t } from '@/lib/i18n';
+import LanguageSwitcher from './LanguageSwitcher';
+import AuthButton from './AuthButton';
+import type { Language } from '@/types/language';
 
-export default function Header() {
+export default async function Header() {
+  // 获取用户语言偏好，默认为中文
+  let currentLanguage: Language = 'zh-CN';
+  try {
+    const userId = await getCurrentUserIdFromHeaders();
+    if (userId) {
+      const settings = await getUserSettings(userId);
+      currentLanguage = settings?.languagePreference || 'zh-CN';
+    }
+  } catch (error) {
+    console.error('Error getting user language:', error);
+  }
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,17 +35,13 @@ export default function Header() {
               href="/" 
               className="text-gray-600 hover:text-gray-900 transition-colors"
             >
-              首页
-            </Link>
-            <Link 
-              href="/kv-demo" 
-              className="text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              KV 演示
+              {await t('nav.home', currentLanguage)}
             </Link>
           </nav>
 
           <div className="flex items-center space-x-4">
+            <AuthButton />
+            <LanguageSwitcher currentLanguage={currentLanguage} />
             <a
               href="https://github.com/WalterZhu/next-cf-template"
               target="_blank"
@@ -50,13 +63,7 @@ export default function Header() {
             href="/" 
             className="block px-3 py-2 text-gray-600 hover:text-gray-900 transition-colors"
           >
-            首页
-          </Link>
-          <Link 
-            href="/kv-demo" 
-            className="block px-3 py-2 text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            KV 演示
+            {await t('nav.home', currentLanguage)}
           </Link>
         </div>
       </div>

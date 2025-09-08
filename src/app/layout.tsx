@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { getCurrentUserIdFromHeaders } from "@/lib/user-utils";
+import { getUserSettings } from "@/lib/session";
+import NextAuthSessionProvider from "@/components/SessionProvider";
+import NotificationProvider from "@/components/NotificationProvider";
+import type { Language } from "@/types/language";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,24 +34,39 @@ function CloudflareAnalytics() {
   );
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // 获取用户语言偏好，默认为中文
+  let currentLanguage: Language = 'zh-CN';
+  try {
+    const userId = await getCurrentUserIdFromHeaders();
+    if (userId) {
+      const settings = await getUserSettings(userId);
+      currentLanguage = settings?.languagePreference || 'zh-CN';
+    }
+  } catch (error) {
+    console.error('Error getting user language:', error);
+  }
+
   return (
-    <html lang="zh-CN">
+    <html lang={currentLanguage}>
       <head>
         <CloudflareAnalytics />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <Header />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <NextAuthSessionProvider>
+          <NotificationProvider>
+            <Header />
+            <main className="flex-1">
+              {children}
+            </main>
+          </NotificationProvider>
+        </NextAuthSessionProvider>
       </body>
     </html>
   );
