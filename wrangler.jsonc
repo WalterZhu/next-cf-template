@@ -20,7 +20,7 @@
 	},
 	"routes": [
 		{
-			"pattern": "test.wildcloud.app",
+			"pattern": "template.wildcloud.app",
 			"custom_domain": true
 		}
 	],
