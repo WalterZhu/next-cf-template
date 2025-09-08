@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
   },
   
   // Cloudflare 部署优化
+
   // 禁用 SWC minify，使用 Terser（更兼容原生依赖）
   swcMinify: false,
   

@@ -32,5 +32,11 @@
 		"tailwindcss": "^4",
 		"typescript": "^5",
 		"wrangler": "^4.31.0"
+	},
+	"optionalDependencies": {
+		"lightningcss-linux-x64-gnu": "^1.28.1",
+		"lightningcss-linux-arm64-gnu": "^1.28.1",
+		"@ast-grep/napi-linux-x64-gnu": "latest",
+		"@ast-grep/napi-linux-arm64-gnu": "latest"
 	}
 }
